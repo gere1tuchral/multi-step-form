@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import { Header } from "@/component/layer/Header";
 import {
   ContactInfo,
@@ -15,14 +16,18 @@ const Home = () => {
   const handleprev = () => {
     setStep(step - 1);
   };
-  const Component = [ContactInfo, PrivateInfo, ProfileImage, Success][step];
+  const Container = [ContactInfo, PrivateInfo, ProfileImage, Success][step];
   return (
     <div className="flex flex-col  items-center justify-center bg-gray-100 min-h-screen">
       <div className="w-[480px] bg-white p-8">
-        <Header />
         <div>
-          <Component />
-          <button onClick={handleprev}>Back</button>
+          <Container />
+
+          {step !== 0 && (
+            <button onClick={handleprev} className="w-[128px] h-11 text-black">
+              Back
+            </button>
+          )}
           <button onClick={handclick}>Continue</button>
         </div>
       </div>
