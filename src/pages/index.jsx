@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
-import { Header } from "@/component/layer/Header";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   ContactInfo,
   PrivateInfo,
@@ -18,20 +17,15 @@ const Home = () => {
   };
   const Container = [ContactInfo, PrivateInfo, ProfileImage, Success][step];
   return (
-    <div className="flex flex-col  items-center justify-center bg-gray-100 min-h-screen">
-      <div className="w-[480px] bg-white p-8">
-        <div>
-          <Container />
-
-          {step !== 0 && (
-            <button onClick={handleprev} className="w-[128px] h-11 text-black">
-              Back
-            </button>
-          )}
-          <button onClick={handclick}>Continue</button>
-        </div>
-      </div>
-    </div>
+    <AnimatePresence mode="wait">
+      <Container />
+      {step !== 0 && (
+        <button onClick={handleprev} className="w-[128px] h-11 text-black">
+          Back
+        </button>
+      )}
+      <button onClick={handclick}>Continue</button>
+    </AnimatePresence>
   );
 };
 export default Home;
